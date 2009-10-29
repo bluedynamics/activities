@@ -1,0 +1,218 @@
+activities.runtime runtime.py test
+==================================
+
+Start this test like so:
+./bin/test -s activities.runtime -t runtime.txt
+
+Hacky patch of logging facility to display in doctest
+    >>> from activities.runtime.runtime import log
+    >>> from pprint import pprint
+    >>> log.info = pprint
+
+    >>> import activities.metamodel as mm
+    >>> from activities.metamodel.testmodel import model
+
+Change the profilename of the model to a module we can import for executions
+registration.
+    >>> model['pr'].__name__ = "activities.runtime.testexecutions"
+    >>> model.profiles
+    [<Profile object 'activities.runtime.testexecutions'...>]
+
+Setting activities precondition:
+    >>> model['main']['pc1'] = mm.PreConstraint(specification='test is not None')
+    >>> model['main']['po1'] = mm.PostConstraint(specification='test is True')
+
+Setting the guard of ActivityEdge "9" to allow testing of a key from dict data
+    >>> model['main']['9'].guard = "test is True"
+
+
+Test the runtime
+================
+    >>> from activities.runtime.runtime import ActivityRuntime
+    >>> ar = ActivityRuntime(model['main'])
+
+Test the precondition
+    >>> ar.start()
+    Traceback (most recent call last):
+    ...
+    ActivityRuntimeError: PreConstraint not fulfilled: "test is not None"
+
+That's true, so:
+    >>> ar.start(data={'test':False})
+    >>> ar.ts()
+    1: ...Token..., data: {'test': False}
+
+    >>> ar.next()
+    >>> ar.print_token_state()
+    2: ..., data: {'test': False}
+    3: ..., data: {'test': False}
+
+Runtime Change: Associate "action2" with an execution
+    >>> ar.activity['action2']['execution2'] = mm.Stereotype(\
+    ...     profile=ar.activity.package.profiles[0])
+
+    >>> ar.next()
+    data['test'] = True
+    'executing: "action1"'
+    'executing: "action2"'
+
+    >>> ar.ts()
+    4: ..., data: {'test': True}
+    5: ..., data: {'info': 'execution2 has completed'}
+
+Runtime Change: Invalidate the model:
+    >>> ar.activity['invalid edge'] =\
+    ...     mm.ActivityEdge(source=ar.activity['end'],\
+    ...     target=ar.activity['end'])
+
+    >>> ar.activity['end'].outgoing_edges
+    [<...'invalid edge'...>]
+    >>> ar.activity['end'].incoming_edges
+    [<...'11'...>, <...'invalid edge'...>]
+    >>> mm.validate(ar.activity)
+    Traceback (most recent call last):
+    ...
+    ModelIllFormedException: ... FinalNode cannot have outgoing edges
+    >>> del ar.activity['invalid edge']
+    >>> ar.activity['end'].outgoing_edges
+    []
+    >>> mm.validate(ar.activity)
+
+Runtime Change: Associate "action3" with an execution.
+    >>> ar.activity['action3']['execution1'] = mm.Stereotype(\
+    ...     profile=ar.activity.package.profiles[0])
+
+    >>> ar.next()
+    data['test'] = False
+    'executing: "action3"'
+
+    >>> ar.ts()
+    5: ..., data: {'info': 'execution2 has completed'}
+    6: ..., data: {'test': False}
+    7: ..., data: {'test': False}
+
+    >>> ar.next()
+    >>> ar.ts()
+    10: ..., data: {'info': 'execution2 has completed', 'test': False}
+    8: ..., data: {'test': False}
+
+    >>> ar.next()
+    {'test': False}
+    >>> ar.ts()
+    11: ..., data: {'info': 'execution2 has completed', 'test': False}
+
+Next ar.next() will stop the activity.
+For better illustration, we inject another token. The corresponding node will
+be executed, regardless if ActivityFinalNode is reached first and at the end,
+the activity will be stopped, leaving no tokens active.
+    >>> from activities.runtime.tokens import Token
+    >>> ar.token_pool.append(Token(ar.activity['5'].uuid))
+    >>> ar.ts()
+    11: ... data: {... 'test': False}
+    5: ...
+
+Activity will be stopped now but also an exception is raised because activity's
+postcondition cannot be fullfilled.
+    >>> ar.next()
+    Traceback (most recent call last):
+    ...
+    ActivityRuntimeError: PostConstraint not fulfilled: "test is True"
+
+Note, previous next() call also produced output 'stopping activity'.
+But despite that, doctest only expects the exception, nothing else.
+
+    >>> ar.ts()
+
+
+
+
+Again, with different start parameter
+=====================================
+    >>> ar.start(data={'test':True})
+    >>> ar.next()
+    >>> ar.next()
+    data['test'] = False
+    'executing: "action1"'
+    'executing: "action2"'
+    >>> ar.ts()
+    4: ..., data: {'test': False}
+    5: ..., data: {'info': 'execution2 has completed'}
+
+Restart of the runtime engine
+-----------------------------
+First, copy the activity and the token_pool
+    >>> activity = ar.activity
+    >>> token_pool = ar.token_pool
+
+Delete the activity runtime reference to kill the runtime:
+    >>> del ar
+
+    >>> new_ar = ActivityRuntime(activity)
+    >>> new_ar.token_pool = token_pool
+
+    >>> new_ar.ts()
+    4: ..., data: {'test': False}
+    5: ..., data: {'info': 'execution2 has completed'}
+
+    >>> new_ar.next()
+    data['test'] = True
+    'executing: "action3"'
+    >>> new_ar.ts()
+    5: ..., data: {'info': 'execution2 has completed'}
+    6: ..., data: {'test': True}
+    7: ..., data: {'test': True}
+
+    >>> new_ar.next()
+    >>> new_ar.ts()
+    10: ..., data: {'info': 'execution2 has completed', 'test': True}
+    9: ..., data: {'test': True}
+    >>> new_ar.next()
+    >>> new_ar.ts()
+    11: ..., data: {'test': True, 'info': 'execution2 has completed'}
+    >>> new_ar.next()
+    'stopping activity'
+    {'test': True, 'info': 'execution2 has completed'}
+    >>> new_ar.ts()
+
+
+
+Testing, if DecisionNode really traverses only one edge, even if no guard is
+defined (XOR semantic)======================================================
+=====================
+Starting with a fresh model
+
+
+Preparing the model, removind guards
+    >>> model['main']['8'].guard = None
+    >>> model['main']['9'].guard = None
+
+    >>> new_ar.start(data={'test':True})
+    >>> new_ar.ts()
+    1: ... data: {'test': True}
+
+    >>> new_ar.next()
+    >>> new_ar.next()
+    data['test'] = False
+    'executing: "action1"'
+    'executing: "action2"'
+    >>> new_ar.next()
+    data['test'] = True
+    'executing: "action3"'
+    >>> new_ar.next()
+
+So, here only one edge ('8') is used at DecisionNode, although there are no guards and
+any edge could have been taken.
+    >>> new_ar.ts()
+    10: ... data: {'info': 'execution2 has completed', 'test': True}
+    8: ... data: {'test': True}
+
+    >>> new_ar.next()
+    {'test': True}
+    >>> new_ar.ts()
+    11: ... data: {'info': 'execution2 has completed', 'test': True}
+    >>> new_ar.next()
+    'stopping activity'
+    {'info': 'execution2 has completed', 'test': True}
+    >>> new_ar.ts()
+
+    # >>> interact( locals() )

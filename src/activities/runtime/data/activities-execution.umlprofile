@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmlns:uml2tools.notation="http://www.eclipse.org/mdt/uml2tools/gmf/notation/ext/2008" xmi:id="_lDsgwHb9Ed6f8u6UeTTtjA" type="UMLProfile" name="activities-execution.umlprofile" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_mJXIUHb9Ed6f8u6UeTTtjA" type="2007" fontName="Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_mJcn4Hb9Ed6f8u6UeTTtjA" type="5009"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_mJgSQHb9Ed6f8u6UeTTtjA" type="7005" collapsed="true">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_mJgSQXb9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_mJgSQnb9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_mJg5UHb9Ed6f8u6UeTTtjA"/>
+    </children>
+    <element xmi:type="uml:Profile" href="activities-execution.profile.uml#_k4YooXb9Ed6f8u6UeTTtjA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mJXIUXb9Ed6f8u6UeTTtjA"/>
+  </children>
+  <children xmi:type="notation:Node" xmi:id="_q85v0Hb9Ed6f8u6UeTTtjA" type="2006">
+    <children xmi:type="notation:DecorationNode" xmi:id="_q86W4Hb9Ed6f8u6UeTTtjA" type="5008"/>
+    <styles xmi:type="notation:DescriptionStyle" xmi:id="_q85v0Xb9Ed6f8u6UeTTtjA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_q85v0nb9Ed6f8u6UeTTtjA" fontName="Sans"/>
+    <styles xmi:type="notation:FillStyle" xmi:id="_q85v03b9Ed6f8u6UeTTtjA"/>
+    <element xmi:type="uml:ElementImport" href="activities-execution.profile.uml#_q6jmcHb9Ed6f8u6UeTTtjA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_q85v1Hb9Ed6f8u6UeTTtjA" x="48" y="204"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_ryJVwHb9Ed6f8u6UeTTtjA" type="2001" fontName="Sans">
+    <children xmi:type="notation:DecorationNode" xmi:id="_ryJ80Hb9Ed6f8u6UeTTtjA" type="5001">
+      <styles xmi:type="notation:FontStyle" xmi:id="_ryxn4Hb9Ed6f8u6UeTTtjA" bold="true"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_ryJ80Xb9Ed6f8u6UeTTtjA" type="5012"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_ryLK8Hb9Ed6f8u6UeTTtjA" type="7001">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_ryLK8Xb9Ed6f8u6UeTTtjA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ryLK8nb9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ryLK83b9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_ryLyAHb9Ed6f8u6UeTTtjA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_ryLyAXb9Ed6f8u6UeTTtjA" type="7002">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_ryLyAnb9Ed6f8u6UeTTtjA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ryLyA3b9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ryLyBHb9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_ryLyBXb9Ed6f8u6UeTTtjA"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_ryLyBnb9Ed6f8u6UeTTtjA" type="7006">
+      <styles xmi:type="notation:TitleStyle" xmi:id="_ryLyB3b9Ed6f8u6UeTTtjA" showTitle="true"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_ryLyCHb9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_ryLyCXb9Ed6f8u6UeTTtjA"/>
+      <styles xmi:type="notation:CanonicalStyle" xmi:id="_ryMZEHb9Ed6f8u6UeTTtjA"/>
+    </children>
+    <element xmi:type="uml:Stereotype" href="activities-execution.profile.uml#_rwUw0Hb9Ed6f8u6UeTTtjA"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ryJVwXb9Ed6f8u6UeTTtjA" x="251" y="194"/>
+  </children>
+  <children xmi:type="notation:Shape" xmi:id="_uMlX4Hb9Ed6f8u6UeTTtjA" type="Note" fontName="Sans" description="This profile provides an stereotype which can be used to mark profiles as execution-definition-profiles. Such profiles provide stereotypes which are applied to actions and define which execution-utilities to load for these actions." fillColor="13369343" transparency="0" lineColor="6737151" lineWidth="1">
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_uMn0IHb9Ed6f8u6UeTTtjA" type="DiagramName">
+      <element xsi:nil="true"/>
+    </children>
+    <children xmi:type="notation:BasicDecorationNode" xmi:id="_uMobMHb9Ed6f8u6UeTTtjA" type="Description">
+      <element xsi:nil="true"/>
+    </children>
+    <styles xmi:type="notation:TextStyle" xmi:id="_uMlX4Xb9Ed6f8u6UeTTtjA"/>
+    <styles xmi:type="notation:LineTypeStyle" xmi:id="_uMlX4nb9Ed6f8u6UeTTtjA"/>
+    <element xsi:nil="true"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_uMlX43b9Ed6f8u6UeTTtjA" x="192" y="24" width="217"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_lDtH0Hb9Ed6f8u6UeTTtjA"/>
+  <styles xmi:type="uml2tools.notation:U2TDiagramCanonicalStyle" xmi:id="_lDtH0Xb9Ed6f8u6UeTTtjA"/>
+  <element xmi:type="uml:Profile" href="activities-execution.profile.uml#_k4YooXb9Ed6f8u6UeTTtjA"/>
+  <edges xmi:type="notation:Edge" xmi:id="_tjewgHb9Ed6f8u6UeTTtjA" type="4002" source="_ryJVwHb9Ed6f8u6UeTTtjA" target="_q85v0Hb9Ed6f8u6UeTTtjA">
+    <children xmi:type="notation:DecorationNode" xmi:id="_tjfXkHb9Ed6f8u6UeTTtjA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_tjfXkXb9Ed6f8u6UeTTtjA" y="-15"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_tjewgXb9Ed6f8u6UeTTtjA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_tjewgnb9Ed6f8u6UeTTtjA" fontName="Sans"/>
+    <element xmi:type="uml:Extension" href="activities-execution.profile.uml#_ti6v0Hb9Ed6f8u6UeTTtjA"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_tjewg3b9Ed6f8u6UeTTtjA" points="[-50, -1, 160, -1]$[-167, -1, 43, -1]"/>
+  </edges>
+</notation:Diagram>

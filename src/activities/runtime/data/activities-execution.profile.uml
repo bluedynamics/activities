@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_k4YooXb9Ed6f8u6UeTTtjA" name="activities-execution" metaclassReference="_q6jmcHb9Ed6f8u6UeTTtjA">
+  <eAnnotations xmi:id="_NXmCYHb-Ed6f8u6UeTTtjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_NXoeoHb-Ed6f8u6UeTTtjA" name="activitiesexecution" nsURI="http:///schemas/activitiesexecution/_NXiYAHb-Ed6f8u6UeTTtjA/0" nsPrefix="activitiesexecution">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_NXoeoXb-Ed6f8u6UeTTtjA" name="execution">
+        <eAnnotations xmi:id="_NXoeonb-Ed6f8u6UeTTtjA" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_rwUw0Hb9Ed6f8u6UeTTtjA"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NXoeo3b-Ed6f8u6UeTTtjA" name="base_Profile" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Profile"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_k8o2gHb9Ed6f8u6UeTTtjA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+  </elementImport>
+  <elementImport xmi:id="_k86jUHb9Ed6f8u6UeTTtjA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_k87KYHb9Ed6f8u6UeTTtjA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#UnlimitedNatural"/>
+  </elementImport>
+  <elementImport xmi:id="_k87KYXb9Ed6f8u6UeTTtjA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:id="_q6jmcHb9Ed6f8u6UeTTtjA">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Profile"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_rwUw0Hb9Ed6f8u6UeTTtjA" name="execution">
+    <ownedAttribute xmi:id="_ti798Hb9Ed6f8u6UeTTtjA" name="base_Profile" association="_ti6v0Hb9Ed6f8u6UeTTtjA">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Profile"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_ti6v0Hb9Ed6f8u6UeTTtjA" name="Profile_execution" memberEnd="_ti7W4Hb9Ed6f8u6UeTTtjA _ti798Hb9Ed6f8u6UeTTtjA">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ti7W4Hb9Ed6f8u6UeTTtjA" name="extension_execution" type="_rwUw0Hb9Ed6f8u6UeTTtjA" aggregation="composite" association="_ti6v0Hb9Ed6f8u6UeTTtjA"/>
+  </packagedElement>
+</uml:Profile>

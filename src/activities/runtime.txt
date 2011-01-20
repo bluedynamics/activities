@@ -10,13 +10,13 @@ Hacky patch of logging facility to display in doctest
     >>> log.info = pprint
 
     >>> import node.ext.uml.activities as mm
-    >>> from node.ext.uml.activities.test.env import model
+    >>> from node.ext.uml.tests.env import model
 
 Change the profilename of the model to a module we can import for executions
 registration.
-    >>> model['pr'].__name__ = "activities.runtime.tests.env_executions"
-    >>> model.profiles
-    [<Profile object 'activities.runtime.tests.env_executions'...>]
+    >>> model['pr'].__name__ = "activities.tests.env_executions"
+    >>> list(model.profiles)
+    [<Profile object 'activities.tests.env_executions'...>]
 
 Setting activities precondition:
     >>> model['main']['pc1'] = mm.PreConstraint(specification='test is not None')
@@ -28,7 +28,7 @@ Setting the guard of ActivityEdge "9" to allow testing of a key from dict data
 
 Test the runtime
 ================
-    >>> from activities.runtime.runtime import ActivityRuntime
+    >>> from activities.runtime import ActivityRuntime
     >>> ar = ActivityRuntime(model['main'])
 
 Test the precondition
@@ -105,7 +105,7 @@ Next ar.next() will stop the activity.
 For better illustration, we inject another token. The corresponding node will
 be executed, regardless if ActivityFinalNode is reached first and at the end,
 the activity will be stopped, leaving no tokens active.
-    >>> from activities.runtime.tokens import Token
+    >>> from activities.tokens import Token
     >>> ar.token_pool.append(Token(ar.activity['5'].uuid))
     >>> ar.ts()
     11: ... data: {... 'test': False}

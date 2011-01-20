@@ -1,57 +1,46 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2009: Johannes Raggam, BlueDynamics Alliance
-#                 http://bluedynamics.com
-# GNU Lesser General Public License Version 2 or later
-
-__author__ = """Johannes Raggam <johannes@raggam.co.at>"""
-__docformat__ = 'plaintext'
-
 from setuptools import setup, find_packages
-import sys, os
+import os
 
-version = '1.0'
-shortdesc ="Runtime engine for activities"
-longdesc = open(os.path.join(os.path.dirname(__file__), 'README.txt')).read()
-longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.txt')).read()
+version = '0.1'
+shortdesc ="runtime engine for node.ext.uml based activities"
+longdesc = open(os.path.join(os.path.dirname(__file__), 'README.rst')).read()
+longdesc += open(os.path.join(os.path.dirname(__file__), 'LICENSE.rst')).read()
 
-setup(name='activities.runtime',
+setup(name='activities',
       version=version,
       description=shortdesc,
       long_description=longdesc,
       classifiers=[
-          'Development Status :: 4 - Beta',
-          'License :: OSI Approved :: GNU Library or Lesser General Public License (LGPL)',
-          'Operating System :: OS Independent',
-          'Programming Language :: Python',
-          'Framework :: Zope3',
-          'Intended Audience :: Developers',
-          'Topic :: Software Development :: Libraries :: Python Modules'
-      ], # Get strings from http://pypi.python.org/pypi?:action=list_classifiers
-      keywords='UML Activities runtime',
-      author='Johannes Raggam',
-      author_email='johannes@raggam.co.at',
-      url='',
-      license='LGPL',
-      packages = find_packages('src'),
+            'Development Status :: 3 - Alpha',
+            'License :: OSI Approved :: GNU General Public License (GPL)',
+            'Operating System :: OS Independent',
+            'Programming Language :: Python',
+      ], # Get strings from http://www.python.org/pypi?:action=list_classifiers
+      keywords='',
+      author='BlueDynamics Alliance',
+      author_email='dev@bluedynamics.com',
+      url='http://github.com/bluedynamics/activities',
+      license='BSD',
+      packages=find_packages('src'),
       package_dir = {'': 'src'},
-      namespace_packages=['activities'],
+      namespace_packages=['node', 'node.ext'],
       include_package_data=True,
-      zip_safe=False,
+      zip_safe=True,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*
-          'activities.metamodel',
+          'node.ext.uml',
           'zope.interface',
           'zope.component',
       ],
       extras_require={
           'test': [
               'interlude',
-              'activities.transform.xmi',
+              'zope.configuration',
+              #'activities.transform.xmi',
           ]
       },
       entry_points="""
-      # -*- Entry points: -*-
+      [console_scripts]
       """,
       )
+

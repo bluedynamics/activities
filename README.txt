@@ -1,7 +1,7 @@
-activities.runtime
-==================
+activities
+==========
 
-A activities interpreter and runtime engine.
+runtime engine for node.ext.uml based activities
 
 Features:
 - Create instances of model elements

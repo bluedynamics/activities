@@ -36,7 +36,6 @@ setup(name='activities',
           'test': [
               'interlude',
               'zope.configuration',
-              #'activities.transform.xmi',
           ]
       },
       entry_points="""

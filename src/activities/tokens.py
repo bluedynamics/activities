@@ -1,25 +1,16 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2009: Johannes Raggam, BlueDynamics Alliance
-#                 http://bluedynamics.com
-# GNU Lesser General Public License Version 2 or later
-
-__author__ = """Johannes Raggam <johannes@raggam.co.at>"""
-__docformat__ = 'plaintext'
-
 from zope.component import getGlobalSiteManager
 from zope.component import adapter, adapts
 from zope.interface import implementer, implements
 
-from activities.metamodel.interfaces import IAction
-from activities.metamodel.interfaces import IActivityEdge
-from activities.metamodel.interfaces import IStereotype
+from node.ext.uml.interfaces import IAction
+from node.ext.uml.interfaces import IActivityEdge
+from node.ext.uml.interfaces import IStereotype
 
-from activities.runtime.interfaces import IActionInfo
-from activities.runtime.interfaces import ITaggedValueDict
-from activities.runtime.interfaces import IToken
-from activities.runtime.interfaces import ITokenFilter
-from activities.runtime.interfaces import ITokenPool
+from activities.interfaces import IActionInfo
+from activities.interfaces import ITaggedValueDict
+from activities.interfaces import IToken
+from activities.interfaces import ITokenFilter
+from activities.interfaces import ITokenPool
 
 import uuid
 

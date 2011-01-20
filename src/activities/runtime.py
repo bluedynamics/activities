@@ -1,43 +1,34 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright 2009: Johannes Raggam, BlueDynamics Alliance
-#                 http://bluedynamics.com
-# GNU Lesser General Public License Version 2 or later
-
-__author__ = """Johannes Raggam <johannes@raggam.co.at>"""
-__docformat__ = 'plaintext'
-
 from zope.interface import implements
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-import activities.runtime.tokens # registers multiadapter
+import activities.tokens # registers multiadapter
 
-from activities.metamodel.interfaces import ActivitiesException
+from node.ext.uml.interfaces import ActivitiesException
 
-from activities.metamodel.interfaces import IAction
-from activities.metamodel.interfaces import IActivity
-from activities.metamodel.interfaces import IActivityEdge
-from activities.metamodel.interfaces import IActivityFinalNode
-from activities.metamodel.interfaces import IDecisionNode
-from activities.metamodel.interfaces import IFinalNode
-from activities.metamodel.interfaces import IForkNode
-from activities.metamodel.interfaces import IInitialNode
-from activities.metamodel.interfaces import IMergeNode
-from activities.metamodel.interfaces import IStereotype
-from activities.metamodel.interfaces import ITaggedValue
+from node.ext.uml.interfaces import IAction
+from node.ext.uml.interfaces import IActivity
+from node.ext.uml.interfaces import IActivityEdge
+from node.ext.uml.interfaces import IActivityFinalNode
+from node.ext.uml.interfaces import IDecisionNode
+from node.ext.uml.interfaces import IFinalNode
+from node.ext.uml.interfaces import IForkNode
+from node.ext.uml.interfaces import IInitialNode
+from node.ext.uml.interfaces import IMergeNode
+from node.ext.uml.interfaces import IStereotype
+from node.ext.uml.interfaces import ITaggedValue
 
-from activities.runtime.interfaces import IActionInfo
-from activities.runtime.interfaces import IActivityRuntime
-from activities.runtime.interfaces import IExecution
-from activities.runtime.interfaces import ITaggedValueDict
-from activities.runtime.interfaces import IToken
-from activities.runtime.interfaces import ITokenFilter
+from activities.interfaces import IActionInfo
+from activities.interfaces import IActivityRuntime
+from activities.interfaces import IExecution
+from activities.interfaces import ITaggedValueDict
+from activities.interfaces import IToken
+from activities.interfaces import ITokenFilter
 
-from activities.runtime.tokens import Token
-from activities.runtime.tokens import TokenPool
+from activities.tokens import Token
+from activities.tokens import TokenPool
 
 import logging
-log = logging.getLogger('activities.runtime')
+log = logging.getLogger('activities')
 
 class ActivityRuntimeError(ActivitiesException):
     pass

@@ -10,6 +10,7 @@ Hacky patch of logging facility to display in doctest
     >>> log.info = pprint
 
     >>> import node.ext.uml.activities as mm
+    >>> import node.ext.uml.core as cm
     >>> from node.ext.uml.tests.env import model
 
 Change the profilename of the model to a module we can import for executions
@@ -48,8 +49,9 @@ That's true, so:
     3: ..., data: {'test': False}
 
 Runtime Change: Associate "action2" with an execution
-    >>> ar.activity['action2']['execution2'] = mm.Stereotype(\
-    ...     profile=ar.activity.package.profiles[0])
+    >>> ar.activity['action2']['execution2'] = cm.Stereotype()
+    >>> ar.activity['action2']['execution2'].profile = \
+    ...     list(ar.activity.package.profiles)[0]
 
     >>> ar.next()
     data['test'] = True
@@ -65,22 +67,23 @@ Runtime Change: Invalidate the model:
     ...     mm.ActivityEdge(source=ar.activity['end'],\
     ...     target=ar.activity['end'])
 
-    >>> ar.activity['end'].outgoing_edges
+    >>> list(ar.activity['end'].outgoing_edges)
     [<...'invalid edge'...>]
-    >>> ar.activity['end'].incoming_edges
+    >>> list(ar.activity['end'].incoming_edges)
     [<...'11'...>, <...'invalid edge'...>]
     >>> mm.validate(ar.activity)
     Traceback (most recent call last):
     ...
     ModelIllFormedException: ... FinalNode cannot have outgoing edges
     >>> del ar.activity['invalid edge']
-    >>> ar.activity['end'].outgoing_edges
+    >>> list(ar.activity['end'].outgoing_edges)
     []
     >>> mm.validate(ar.activity)
 
 Runtime Change: Associate "action3" with an execution.
-    >>> ar.activity['action3']['execution1'] = mm.Stereotype(\
-    ...     profile=ar.activity.package.profiles[0])
+    >>> ar.activity['action3']['execution1'] = cm.Stereotype()
+    >>> ar.activity['action3']['execution1'].profile =\
+    ...     list(ar.activity.package.profiles)[0]
 
     >>> ar.next()
     data['test'] = False

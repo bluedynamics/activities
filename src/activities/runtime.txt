@@ -1,22 +1,22 @@
-activities.runtime runtime.py test
-==================================
+activities.runtime test
+=======================
 
 Start this test like so:
-./bin/test -s activities.runtime -t runtime.txt
+./bin/test -s activities -t runtime.txt
 
 Hacky patch of logging facility to display in doctest
-    >>> from activities.runtime.runtime import log
+    >>> from activities.runtime import log
     >>> from pprint import pprint
     >>> log.info = pprint
 
-    >>> import activities.metamodel as mm
-    >>> from activities.metamodel.testmodel import model
+    >>> import node.ext.uml.activities as mm
+    >>> from node.ext.uml.activities.test.env import model
 
 Change the profilename of the model to a module we can import for executions
 registration.
-    >>> model['pr'].__name__ = "activities.runtime.testexecutions"
+    >>> model['pr'].__name__ = "activities.runtime.tests.env_executions"
     >>> model.profiles
-    [<Profile object 'activities.runtime.testexecutions'...>]
+    [<Profile object 'activities.runtime.tests.env_executions'...>]
 
 Setting activities precondition:
     >>> model['main']['pc1'] = mm.PreConstraint(specification='test is not None')

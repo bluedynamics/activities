@@ -7,6 +7,8 @@ from zope.interface import Attribute
     James Rumbaugh, Ivar Jacobson, Grady Booch. Addison-Wesley, 2005
 """
 
+class ActivityRuntimeError(Exception):
+    pass
 
 class IToken(Interface):
     """The presence of a locus of control, including possible data values, during

@@ -3,8 +3,6 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 import activities.tokens # registers multiadapter
 
-from node.ext.uml.interfaces import ActivitiesException
-
 from node.ext.uml.interfaces import IAction
 from node.ext.uml.interfaces import IActivity
 from node.ext.uml.interfaces import IActivityEdge
@@ -24,14 +22,12 @@ from activities.interfaces import ITaggedValueDict
 from activities.interfaces import IToken
 from activities.interfaces import ITokenFilter
 
+from activities.interfaces import ActivityRuntimeError
 from activities.tokens import Token
 from activities.tokens import TokenPool
 
 import logging
 log = logging.getLogger('activities')
-
-class ActivityRuntimeError(ActivitiesException):
-    pass
 
 class ActivityRuntime(object):
     implements(IActivityRuntime)
